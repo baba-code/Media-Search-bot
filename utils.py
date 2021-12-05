@@ -203,6 +203,9 @@ async def get_poster(movie):
     if is_in_db:
         for nyav in is_in_db:
             poster=nyav.poster
+            v=nyav.title
+            imdb_rating=nyav.imdb_rating
+            genre=nyav.genre
     else:
         if year:
             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'
