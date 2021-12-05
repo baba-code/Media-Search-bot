@@ -215,7 +215,7 @@ async def get_poster(movie):
                 year=y.get("Year")[:4]
                 id=y.get("imdbID")
                 imdb_rating=y.get("imdbRating")
-                genre=y.get("Genre")
+                genre=y.get("Released")
                 await get_all(a.get("Search"))
         except Exception as e:
             logger.exception(e)
