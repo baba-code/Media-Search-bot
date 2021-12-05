@@ -215,7 +215,7 @@ async def get_poster(movie):
             n = requests.get(url)
             a = json.loads(n.text)
             if a["Response"] == 'True':
-                y = a.get("Search")[0]
+                y = a
                 v=y.get("Title").lower().strip()
                 poster = y.get("Poster")
                 year=y.get("Year")[:4]
