@@ -230,7 +230,7 @@ async def get_poster(movie):
         except Exception as e:
             logger.exception(e)
             pass
-    return poster,imdb_rating,genre,v
+    return poster,imdb_rating,genre, v.title()
 
 
 def get_all(list):
