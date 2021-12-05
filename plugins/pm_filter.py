@@ -146,8 +146,10 @@ async def group(client, message):
                 [InlineKeyboardButton(text="📃 Pages 1/1",callback_data="pages")]
             )
             poster=None
+            imdbRating=None
+            genre=None
             if API_KEY:
-                poster=await get_poster(search)
+                poster,imdbRating,genre=await get_poster(search)
             if poster:
                 await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title: {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>\n<b>⭐ Rating: {imdbRating}\n🎭 Genre:{genre}</b>", reply_markup=InlineKeyboardMarkup(buttons))
             else:
@@ -164,8 +166,10 @@ async def group(client, message):
             [InlineKeyboardButton(text=f"📃 Pages 1/{data['total']}",callback_data="pages")]
         )
         poster=None
+        imdbRating=None
+        genre=None
         if API_KEY:
-            poster=await get_poster(search)
+            poster,imdbRating,genre=await get_poster(search)
         if poster:
             await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title: {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>\n<b>⭐ Rating: {imdbRating}\n🎭 Genre:{genre}</b>", reply_markup=InlineKeyboardMarkup(buttons))
         else:
