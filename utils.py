@@ -208,21 +208,21 @@ async def get_poster(movie):
             genre=nyav.genre
     else:
         if year:
-            url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'
+            url=f'https://www.omdbapi.com/?t={title}&y={year}&apikey={API_KEY}'
         else:
-            url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'
+            url=f'https://www.ommdapi.com/?t={title}&apikey={API_KEY}'
         try:
             n = requests.get(url)
             a = json.loads(n.text)
             if a["Response"] == 'True':
-                y = a.get("Search")[0]
+                y = a
                 v=y.get("Title").lower().strip()
                 poster = y.get("Poster")
                 year=y.get("Year")[:4]
                 id=y.get("imdbID")
                 imdb_rating=y.get("imdbRating")
                 genre=y.get("Genre")
-                await get_all(a.get("Search"))
+                await get_all(a)
         except Exception as e:
             logger.exception(e)
             pass
