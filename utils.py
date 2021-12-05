@@ -46,8 +46,8 @@ class Poster(Document):
     title = fields.StrField()
     poster = fields.StrField()
     year= fields.IntField(allow_none=True)
-    imdb_rating = fields.StrField(attribute='imdb_rating')
-    genre = fields.StrField()
+    imdb_rating = fields.StrField(allow_none=True)
+    genre = fields.StrField(allow_none=True)
 
     class Meta:
         collection_name = COLLECTION_NAME_2
@@ -215,7 +215,7 @@ async def get_poster(movie):
             n = requests.get(url)
             a = json.loads(n.text)
             if a["Response"] == 'True':
-                y = a
+                y = a.get("Search")[0]
                 v=y.get("Title").lower().strip()
                 poster = y.get("Poster")
                 year=y.get("Year")[:4]
