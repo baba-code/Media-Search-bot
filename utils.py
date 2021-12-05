@@ -46,17 +46,21 @@ class Poster(Document):
     title = fields.StrField()
     poster = fields.StrField()
     year= fields.IntField(allow_none=True)
+    imdb_rating = fields.StrField(attribute='imdb_rating')
+    genre = fields.StrField()
 
     class Meta:
         collection_name = COLLECTION_NAME_2
 
-async def save_poster(imdb_id, title, year, url):
+async def save_poster(imdb_id, title, year, url, imdb_rating, genre):
     try:
         data = Poster(
             imdb_id=imdb_id,
             title=title,
             year=int(year),
-            poster=url
+            poster=url,
+            imdb_rating=imdb_rating,
+            genre=genre
         )
     except ValidationError:
         logger.exception('Error occurred while saving poster in database')
@@ -210,6 +214,8 @@ async def get_poster(movie):
                 poster = y.get("Poster")
                 year=y.get("Year")[:4]
                 id=y.get("imdbID")
+                imdb_rating=("imdbRating")
+                genre=("Genre")
                 await get_all(a.get("Search"))
         except Exception as e:
             logger.exception(e)
@@ -223,7 +229,9 @@ async def get_all(list):
         poster = y.get("Poster")
         year=y.get("Year")[:4]
         id=y.get("imdbID")
-        await save_poster(id, v, year, poster)
+        imdb_rating=("imdbRating")
+        genre=("Genre")
+        await save_poster(id, v, year, poster, imdb_rating, genre)
 
 
 def encode_file_id(s: bytes) -> str:
