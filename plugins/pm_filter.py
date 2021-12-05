@@ -80,8 +80,9 @@ async def filter(client, message):
             poster=None
             imdbRating=None
             genre=None
+            title=None
             if API_KEY:
-                poster,imdbRating,genre=await get_poster(search)
+                poster,imdbRating,genre,title=await get_poster(search)
             if poster:
                 await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title:</b> {search} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
 
@@ -101,12 +102,13 @@ async def filter(client, message):
         poster=None
         imdbRating=None
         genre=None
+        title=None
         if API_KEY:
-            poster,imdbRating,genre=await get_poster(search)
+            poster,imdbRating,genre,title=await get_poster(search)
         if poster:
             await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title:</b> {search} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b> {genre}", reply_markup=InlineKeyboardMarkup(buttons))
         else:
-            await message.reply_text(f"<b>❔Query: {search}\n🗂️ Title: {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>\n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b> {genre}", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_text(f"<b>❔Query: {search}\n🗂️ Title:</b> {search}\n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b> {genre}", reply_markup=InlineKeyboardMarkup(buttons))
 
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)
 async def group(client, message):
@@ -148,8 +150,9 @@ async def group(client, message):
             poster=None
             imdbRating=None
             genre=None
+            title=None
             if API_KEY:
-                poster,imdbRating,genre=await get_poster(search)
+                poster,imdbRating,genre,title=await get_poster(search)
             if poster:
                 await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title:</b> {search} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
             else:
@@ -168,8 +171,9 @@ async def group(client, message):
         poster=None
         imdbRating=None
         genre=None
+        title=None
         if API_KEY:
-            poster,imdbRating,genre=await get_poster(search)
+            poster,imdbRating,genre,title=await get_poster(search)
         if poster:
             await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title:</b> {search} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
         else:
