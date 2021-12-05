@@ -210,7 +210,7 @@ async def get_poster(movie):
         if year:
             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'
         else:
-            url=f'https://www.ommdapi.com/?s={title}&apikey={API_KEY}'
+            url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'
         try:
             n = requests.get(url)
             a = json.loads(n.text)
