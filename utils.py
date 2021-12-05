@@ -233,7 +233,7 @@ async def get_all(list):
         year=y.get("Year")[:4]
         id=y.get("imdbID")
         genre=y.get("Genre")
-        imdb_rating=y.get("imdbRating")
+        imdb_rating=("imdbRating")
         await save_poster(id, v, year, poster, imdb_rating, genre)
 
 
