@@ -179,7 +179,7 @@ async def is_subscribed(bot, query):
 
     return False
 
-async def get_poster(movie):
+def get_poster(movie):
     extract = PTN.parse(movie)
     try:
         title=extract["title"]
@@ -208,9 +208,9 @@ async def get_poster(movie):
             genre=nyav.genre
     else:
         if year:
-            url=f'https://www.omdbapi.com/?t={title}&y={year}&apikey={API_KEY}'
+            url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'
         else:
-            url=f'https://www.ommdapi.com/?t={title}&apikey={API_KEY}'
+            url=f'https://www.ommdapi.com/?s={title}&apikey={API_KEY}'
         try:
             n = requests.get(url)
             a = json.loads(n.text)
@@ -221,31 +221,31 @@ async def get_poster(movie):
                 year=y.get("Year")[:4]
                 id=y.get("imdbID")
                 ''' For Getting Complete Details '''
-                url1=f'https://www.omdbapi.com/?i={id}&apikey={API_KEY}&r=json'
+                url1=f'https://www.omdbapi.com/?i={id}&apikey={API_KEY}'
                 n1 = requests.get(url1)
                 a1 = json.loads(n1.text)
                 imdb_rating=a1.get("imdbRating")
                 genre=a1.get("Genre")
-                await get_all(a.get('Search'))
+                get_all(a.get('Search'))
         except Exception as e:
             logger.exception(e)
             pass
     return poster,imdb_rating,genre,v
 
 
-async def get_all(list):
+def get_all(list):
     for y in list:
         v=y.get("Title").lower().strip()
         poster = y.get("Poster")
         year=y.get("Year")[:4]
         id=y.get("imdbID")
         ''' For Getting Complete Details '''
-        url1=f'https://www.omdbapi.com/?i={id}&apikey={API_KEY}&r=json'
+        url1=f'https://www.omdbapi.com/?i={id}&apikey={API_KEY}'
         n1 = requests.get(url1)
         a1 = json.loads(n1.text)
         imdb_rating=a1.get("imdbRating")
         genre=a1.get("Genre")
-        await save_poster(id, v, year, poster, imdb_rating, genre)
+        save_poster(id, v, year, poster, imdb_rating, genre)
 
 
 def encode_file_id(s: bytes) -> str:
