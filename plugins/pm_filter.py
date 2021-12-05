@@ -78,13 +78,13 @@ async def filter(client, message):
                 [InlineKeyboardButton(text="📃 Pages 1/1",callback_data="pages")]
             )
             poster=None
-            imdbRating=None
-            genre=None
+            imdbRating="N/A"
+            genre="N/A"
             title=None
             if API_KEY:
                 poster,imdbRating,genre,title=await get_poster(search)
             if poster:
-                await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title:</b> {search} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title:</b> {title} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
 
             else:
                 await message.reply_text(f"<b>❔Query: {search}\n🗂️ Title:</b> {search} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
@@ -100,13 +100,13 @@ async def filter(client, message):
             [InlineKeyboardButton(text=f"📃 Pages 1/{data['total']}",callback_data="pages")]
         )
         poster=None
-        imdbRating=None
-        genre=None
+        imdbRating="N/A"
+        genre="N/A"
         title=None
         if API_KEY:
             poster,imdbRating,genre,title=await get_poster(search)
         if poster:
-            await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title:</b> {search} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b> {genre}", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title:</b> {title} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b> {genre}", reply_markup=InlineKeyboardMarkup(buttons))
         else:
             await message.reply_text(f"<b>❔Query: {search}\n🗂️ Title:</b> {search}\n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b> {genre}", reply_markup=InlineKeyboardMarkup(buttons))
 
@@ -148,8 +148,8 @@ async def group(client, message):
                 [InlineKeyboardButton(text="📃 Pages 1/1",callback_data="pages")]
             )
             poster=None
-            imdbRating=None
-            genre=None
+            imdbRating="N/A"
+            genre="N/A"
             title=None
             if API_KEY:
                 poster,imdbRating,genre,title=await get_poster(search)
@@ -169,13 +169,13 @@ async def group(client, message):
             [InlineKeyboardButton(text=f"📃 Pages 1/{data['total']}",callback_data="pages")]
         )
         poster=None
-        imdbRating=None
-        genre=None
+        imdbRating="N/A"
+        genre="N/A"
         title=None
         if API_KEY:
             poster,imdbRating,genre,title=await get_poster(search)
         if poster:
-            await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title:</b> {search} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title:</b> {title} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
         else:
             await message.reply_text(f"<b>❔Query: {search}\n🗂️ Title:</b> {search} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
 
