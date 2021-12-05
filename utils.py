@@ -226,7 +226,7 @@ def get_poster(movie):
                 a1 = json.loads(n1.text)
                 imdb_rating=a1.get("imdbRating")
                 genre=a1.get("Genre")
-                get_all(a.get('Search'))
+                save_poster(id, v, year, poster, imdb_rating, genre)
         except Exception as e:
             logger.exception(e)
             pass
