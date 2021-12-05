@@ -197,9 +197,6 @@ async def get_poster(movie):
     cursor = Poster.find(filter)
     is_in_db = await cursor.to_list(length=1)
     poster=None
-    imdb_rating=None
-    genre=None
-    v=None
     if is_in_db:
         for nyav in is_in_db:
             poster=nyav.poster
@@ -232,8 +229,8 @@ async def get_all(list):
         poster = y.get("Poster")
         year=y.get("Year")[:4]
         id=y.get("imdbID")
-        imdb_rating=y.get("imdbRating")
-        genre=y.get("Genre")
+        imdb_rating=("8")
+        genre=("Genre")
         await save_poster(id, v, year, poster, imdb_rating, genre)
 
 
