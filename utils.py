@@ -215,14 +215,18 @@ async def get_poster(movie):
             n = requests.get(url)
             a = json.loads(n.text)
             if a["Response"] == 'True':
-                y = a
+                y = a.get('Search')[0]
                 v=y.get("Title").lower().strip()
                 poster = y.get("Poster")
                 year=y.get("Year")[:4]
                 id=y.get("imdbID")
-                imdb_rating=y.get("imdbRating")
-                genre=y.get("Genre")
-                await get_all(a)
+                
+                url1=f'https://www.omdbapi.com/?i={id}&apikey={API_KEY}&r=json' ''' For Getting Complete Details '''
+                n1 = requests.get(url1)
+                a1 = json.loads(n1.text)
+                imdb_rating=a1.get("imdbRating")
+                genre=a1.get("Genre")
+                await get_all(a.get('search'))
         except Exception as e:
             logger.exception(e)
             pass
@@ -235,8 +239,13 @@ async def get_all(list):
         poster = y.get("Poster")
         year=y.get("Year")[:4]
         id=y.get("imdbID")
-        genre=y.get("Genre")
-        imdb_rating=("imdbRating")
+        
+        url1=f'https://www.omdbapi.com/?i={id}&apikey={API_KEY}&r=json' ''' For Getting Complete Details '''
+        n1 = requests.get(url1)
+        a1 = json.loads(n1.text)
+        imdb_rating=a1.get("imdbRating")
+        genre=a1.get("Genre")
+        
         await save_poster(id, v, year, poster, imdb_rating, genre)
 
 
