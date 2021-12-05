@@ -197,6 +197,9 @@ async def get_poster(movie):
     cursor = Poster.find(filter)
     is_in_db = await cursor.to_list(length=1)
     poster=None
+    imdb_rating=None
+    genre=None
+    v=None
     if is_in_db:
         for nyav in is_in_db:
             poster=nyav.poster
@@ -220,7 +223,7 @@ async def get_poster(movie):
         except Exception as e:
             logger.exception(e)
             pass
-    return poster,imdb_rating,genre
+    return poster,imdb_rating,genre,v
 
 
 async def get_all(list):
