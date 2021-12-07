@@ -239,8 +239,8 @@ async def get_poster(movie):
 
 async def get_all(list):
     length=len(list)
-    if len>=5:
-        len=5
+    if length>=5:
+        length=5
     for y in list:
         v=y.get("Title").lower().strip()
         poster = y.get("Poster")
