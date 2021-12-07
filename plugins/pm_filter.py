@@ -81,7 +81,7 @@ async def filter(client, message):
             imdbRating="N/A"
             genre="N/A"
             title=None
-            listed=""
+            listed={}
             if API_KEY:
                 poster,imdbRating,genre,title,listed=await get_poster(search)
             if poster:
@@ -105,7 +105,7 @@ async def filter(client, message):
         imdbRating="N/A"
         genre="N/A"
         title=None
-        listed=""
+        listed={}
         if API_KEY:
             poster,imdbRating,genre,title=await get_poster(search)
         if poster:
@@ -156,7 +156,7 @@ async def group(client, message):
             imdbRating="N/A"
             genre="N/A"
             title=None
-            listed=""
+            listed={}
             if API_KEY:
                 poster,imdbRating,genre,title,listed=await get_poster(search)
             if poster:
@@ -180,7 +180,7 @@ async def group(client, message):
         imdbRating="N/A"
         genre="N/A"
         title=None
-        listed=""
+        listed={}
         if API_KEY:
             poster,imdbRating,genre,title,listed=await get_poster(search)
         if poster:
