@@ -4,7 +4,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQ
 from pyrogram import Client, filters
 import re
 from pyrogram.errors import UserNotParticipant
-from utils import get_filter_results, get_file_details, is_subscribed, get_poster
+from utils import get_filter_results, get_file_details, is_subscribed, get_poster,get_all
 BUTTONS = {}
 BOT = {}
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
@@ -81,10 +81,13 @@ async def filter(client, message):
             imdbRating="N/A"
             genre="N/A"
             title=None
+            listed=""
             if API_KEY:
-                poster,imdbRating,genre,title=await get_poster(search)
+                poster,imdbRating,genre,title,listed=await get_poster(search)
             if poster:
                 await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title:</b> {title} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
+                if len(listed):
+                    await get_all(listed)
 
             else:
                 await message.reply_text(f"<b>❔Query: {search}\n🗂️ Title:</b> {search} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
@@ -103,10 +106,13 @@ async def filter(client, message):
         imdbRating="N/A"
         genre="N/A"
         title=None
+        listed=""
         if API_KEY:
             poster,imdbRating,genre,title=await get_poster(search)
         if poster:
             await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title:</b> {title} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b> {genre}", reply_markup=InlineKeyboardMarkup(buttons))
+            if len(listed):
+                await get_all(listed)
         else:
             await message.reply_text(f"<b>❔Query: {search}\n🗂️ Title:</b> {search}\n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b> {genre}", reply_markup=InlineKeyboardMarkup(buttons))
 
@@ -151,10 +157,13 @@ async def group(client, message):
             imdbRating="N/A"
             genre="N/A"
             title=None
+            listed=""
             if API_KEY:
-                poster,imdbRating,genre,title=await get_poster(search)
+                poster,imdbRating,genre,title,listed=await get_poster(search)
             if poster:
                 await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title:</b> {search} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
+                if len(listed):
+                    await get_all(listed)
             else:
                 await message.reply_text(f"<b>❔Query: {search}\n🗂️ Title:</b> {search} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
             return
@@ -172,10 +181,13 @@ async def group(client, message):
         imdbRating="N/A"
         genre="N/A"
         title=None
+        listed=""
         if API_KEY:
-            poster,imdbRating,genre,title=await get_poster(search)
+            poster,imdbRating,genre,title,listed=await get_poster(search)
         if poster:
             await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title:</b> {title} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
+            if len(listed):
+                await get_all(listed)
         else:
             await message.reply_text(f"<b>❔Query: {search}\n🗂️ Title:</b> {search} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
 
