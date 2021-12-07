@@ -88,7 +88,6 @@ async def filter(client, message):
                 await message.reply_photo(photo=poster, caption=f"<b>❔Query: {search}\n🗂️ Title:</b> {title} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
                 if len(listed):
                     await get_all(listed)
-
             else:
                 await message.reply_text(f"<b>❔Query: {search}\n🗂️ Title:</b> {search} \n<b>⭐ Rating: {imdbRating}\n🎭 Genre:</b>{genre}", reply_markup=InlineKeyboardMarkup(buttons))
             return
