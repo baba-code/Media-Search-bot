@@ -179,8 +179,7 @@ async def is_subscribed(bot, query):
 
     return False
 
-#async 
-def get_poster(movie):
+async def get_poster(movie):
     extract = PTN.parse(movie)
     try:
         title=extract["title"]
