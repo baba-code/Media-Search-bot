@@ -238,8 +238,8 @@ def get_poster(movie):
     return poster,imdb_rating,genre, v.title(),listed
 
 
-def get_all(list):
-    len=length(list)
+async def get_all(list):
+    length=len(list)
     if len>=5:
         len=5
     for y in list:
@@ -253,7 +253,7 @@ def get_all(list):
         a1 = json.loads(n1.text)
         imdb_rating=a1.get("imdbRating")
         genre=a1.get("Genre")
-        save_poster(id, v, year, poster, imdb_rating, genre)
+        await save_poster(id, v, year, poster, imdb_rating, genre)
 
 
 def encode_file_id(s: bytes) -> str:
