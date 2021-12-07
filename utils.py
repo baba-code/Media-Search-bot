@@ -179,7 +179,8 @@ async def is_subscribed(bot, query):
 
     return False
 
-async def get_poster(movie):
+#async 
+def get_poster(movie):
     extract = PTN.parse(movie)
     try:
         title=extract["title"]
@@ -200,6 +201,7 @@ async def get_poster(movie):
     v="N/A"
     imdb_rating=None
     genre=None
+    listed=""
     if is_in_db:
         for nyav in is_in_db:
             poster=nyav.poster
@@ -228,14 +230,18 @@ async def get_poster(movie):
                 a1 = json.loads(n1.text)
                 imdb_rating=a1.get("imdbRating")
                 genre=a1.get("Genre")
-                await save_poster(id, v, year, poster, imdb_rating, genre)
+                listed=a.get('Search')
+                #await save_poster(id, v, year, poster, imdb_rating, genre)
         except Exception as e:
             logger.exception(e)
             pass
-    return poster,imdb_rating,genre, v.title()
+    return poster,imdb_rating,genre, v.title(),listed
 
 
 def get_all(list):
+    len=length(list)
+    if len>=5:
+        len=5
     for y in list:
         v=y.get("Title").lower().strip()
         poster = y.get("Poster")
