@@ -244,6 +244,7 @@ async def get_all(list):
     for y in list:
         v=y.get("Title").lower().strip()
         poster = y.get("Poster")
+        poster = re.sub('._V1_SX300.jpg','._V1_SX1500.jpg',poster)
         year=y.get("Year")[:4]
         id=y.get("imdbID")
         ''' For Getting Complete Details '''
