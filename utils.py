@@ -200,7 +200,7 @@ async def get_poster(movie):
     v="N/A"
     imdb_rating=None
     genre=None
-    listed=""
+    listed={}
     if is_in_db:
         for nyav in is_in_db:
             poster=nyav.poster
