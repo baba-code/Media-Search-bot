@@ -199,14 +199,16 @@ async def get_poster(movie):
     poster=None
     v="N/A"
     imdb_rating=None
-    genre=None
+    genre=None 
+    year=None
     listed={}
     if is_in_db:
         for nyav in is_in_db:
             poster=nyav.poster
             v=nyav.title
             imdb_rating=nyav.imdb_rating
-            genre=nyav.genre
+            genre=nyav.genre 
+            year=nyav.year
     else:
         if year:
             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'
@@ -234,7 +236,7 @@ async def get_poster(movie):
         except Exception as e:
             logger.exception(e)
             pass
-    return poster,imdb_rating,genre, v.title(),listed
+    return poster,imdb_rating,genre, v.title(),listed, year
 
 
 async def get_all(list):
